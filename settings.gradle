@@ -17,7 +17,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Albums"
+rootProject.name = "Songs"
 include ':app'
 include ':ui'
 include ':domain'

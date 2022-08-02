@@ -31,7 +31,7 @@ class RemoteDataSource {
         retrofit.create(RemoteService::class.java)
     }
 
-    suspend fun remoteAlbums() = service.albums()
+    suspend fun remoteSongs() = service.songs()
 
     companion object {
         private const val BASE_URL = "https://static.leboncoin.fr"

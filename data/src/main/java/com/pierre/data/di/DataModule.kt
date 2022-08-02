@@ -1,7 +1,7 @@
 package com.pierre.data.di
 
 import com.pierre.data.remote.RemoteDataSource
-import com.pierre.data.repository.AlbumsRepository
+import com.pierre.data.repository.SongsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,5 +15,5 @@ object DataModule {
     fun remoteDataSource() = RemoteDataSource()
 
     @Provides
-    fun repository(remoteDataSource: RemoteDataSource) = AlbumsRepository(remoteDataSource)
+    fun repository(remoteDataSource: RemoteDataSource) = SongsRepository(remoteDataSource)
 }
