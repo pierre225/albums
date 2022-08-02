@@ -1,13 +1,9 @@
-package com.pierre.albums.ui
+package com.pierre.songs.ui
 
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.model.GlideUrl
-import com.bumptech.glide.load.model.LazyHeaders
 import com.pierre.ui.R
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val albumsViewModel : AlbumsViewModel by viewModels()
+    private val songsViewModel : SongsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,11 +28,11 @@ class MainActivity : AppCompatActivity() {
 //            .load("https://via.placeholder.com/150/24f355")
 //            .into(iv);
 
-        albumsViewModel.albums.observe(this) {
+        songsViewModel.songs.observe(this) {
             Toast.makeText(applicationContext, it?.size?.toString(), Toast.LENGTH_LONG).show()
         }
 
-        albumsViewModel.fetchAlbums()
+        songsViewModel.fetchSongs()
     }
 
     override fun onResume() {

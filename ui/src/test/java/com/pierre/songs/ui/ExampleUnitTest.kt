@@ -1,4 +1,4 @@
-package com.pierre.albums
+package com.pierre.songs.ui
 
 import org.junit.Test
 
