@@ -1,0 +1,26 @@
+// declaring versions of the libraries
+ext.libs = [:]
+def versions = [:]
+versions.hilt = '2.38.1'
+versions.retrofit = '2.9.0'
+versions.gson = '2.9.0'
+versions.rx = '3.0.1'
+
+// declaring the dependencies
+def libs = [:]
+
+def hilt = [:]
+hilt.android = "com.google.dagger:hilt-android:$versions.hilt"
+hilt.compiler = "com.google.dagger:hilt-compiler:$versions.hilt"
+libs.hilt = hilt
+
+def retrofit = [:]
+retrofit.core = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.converter = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+libs.retrofit = retrofit
+
+libs.gson = "com.google.code.gson:gson:$versions.gson"
+
+libs.rx = "io.reactivex.rxjava3:rxkotlin:$versions.rx"
+
+ext.libs = libs
