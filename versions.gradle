@@ -5,9 +5,17 @@ versions.hilt = '2.38.1'
 versions.retrofit = '2.9.0'
 versions.gson = '2.9.0'
 versions.rx = '3.0.1'
+versions.room = '2.4.3'
 
 // declaring the dependencies
 def libs = [:]
+
+def room = [:]
+room.runtime = "androidx.room:room-runtime:$versions.room"
+room.compiler = "androidx.room:room-compiler:$versions.room"
+room.ktx = "androidx.room:room-ktx:$versions.room"
+room.paging = "androidx.room:room-paging:$versions.room"
+libs.room = room
 
 def hilt = [:]
 hilt.android = "com.google.dagger:hilt-android:$versions.hilt"
