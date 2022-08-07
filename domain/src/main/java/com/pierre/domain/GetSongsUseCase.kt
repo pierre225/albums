@@ -9,7 +9,6 @@ class GetSongsUseCase(
     private val songsDomainMapper: SongsDomainMapper) {
 
     suspend fun invoke() = songsRepository
-        .songs()
-        .body()
-        ?.map { songsDomainMapper.toDomain(it) }
+        .getAllSongs()
+        .map { songsDomainMapper.toDomain(it) }
 }

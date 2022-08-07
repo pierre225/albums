@@ -1,9 +1,8 @@
 package com.pierre.data.di
 
 import com.pierre.data.remote.RemoteDataSource
-import com.pierre.data.repository.SongsRepository
+import com.pierre.data.remote.mapper.RemoteMapper
 import com.pierre.data.repository.SongsRepositoryImpl
-import com.pierre.data.room.datasource.RoomDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,12 +10,12 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal object DataModule {
+internal object RemoteModule {
 
     @Provides
-    fun repository(
-        remoteDataSource: RemoteDataSource,
-        roomDataSource: RoomDataSource
-    ): SongsRepository = SongsRepositoryImpl(remoteDataSource, roomDataSource)
+    fun remoteDataSource(remoteMapper: RemoteMapper) = RemoteDataSource(remoteMapper)
+
+    @Provides
+    fun remoteMapper() = RemoteMapper()
 
 }
