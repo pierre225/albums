@@ -22,5 +22,4 @@ class SongsViewModel @Inject constructor(private val getSongsUseCase: GetSongsUs
             _songs.postValue(getSongsUseCase.invoke())
         }
     }
-
 }
