@@ -13,3 +13,6 @@ cache strategy
 a fake tracker impl
 tests
 leak canary only in debug
+
+// nice to have
+- Dark mode
