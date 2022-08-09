@@ -2,6 +2,9 @@ package com.pierre.songs.ui.songslist.viewholder
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.model.LazyHeaders
 import com.pierre.songs.ui.base.BaseViewHolder
 import com.pierre.songs.ui.model.UiSong
 import com.pierre.ui.R
@@ -16,19 +19,13 @@ class SongViewHolder(parent: ViewGroup): BaseViewHolder<UiSong>(parent, R.layout
 
         binding.apply {
             title.text = item.title
+            Glide.with(root.context)
+                .load(glideUrl(item.preview))
+                .placeholder(R.drawable.placeholder)
+                .into(thumbnail);
         }
-
-        // todo glide extension
-
-        //        val iv = findViewById<ImageView>(R.id.test)
-//        val url = GlideUrl(
-//            "https://via.placeholder.com/150.gif/771796", LazyHeaders.Builder()
-//                .addHeader("User-Agent", "android")
-//                .build()
-//        )
-//
-//        Glide.with(this)
-//            .load("https://via.placeholder.com/150/24f355")
-//            .into(iv);
     }
+
+    private fun glideUrl(url: String) =
+        GlideUrl(url, LazyHeaders.Builder().addHeader("User-Agent", "android").build())
 }
