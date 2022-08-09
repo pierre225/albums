@@ -4,8 +4,9 @@ def versions = [:]
 versions.hilt = '2.38.1'
 versions.retrofit = '2.9.0'
 versions.gson = '2.9.0'
-versions.rx = '3.0.1'
 versions.room = '2.4.3'
+versions.navigation = '2.5.1'
+versions.glide = '4.13.2'
 
 // declaring the dependencies
 def libs = [:]
@@ -29,6 +30,8 @@ libs.retrofit = retrofit
 
 libs.gson = "com.google.code.gson:gson:$versions.gson"
 
-libs.rx = "io.reactivex.rxjava3:rxkotlin:$versions.rx"
+libs.navigation = "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+
+libs.glide = "com.github.bumptech.glide:glide:$versions.glide"
 
 ext.libs = libs

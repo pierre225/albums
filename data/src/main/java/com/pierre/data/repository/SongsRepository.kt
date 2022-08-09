@@ -19,8 +19,6 @@ internal class SongsRepositoryImpl(
     override suspend fun getAllSongs(): List<DataSong> =
         roomDataSource.getAllSongs().ifEmpty {
             remoteDataSource.remoteSongs().also {
-                Log.d("testtest", "insert songs")
                 roomDataSource.insertSongs(it) }
         }
-
 }
