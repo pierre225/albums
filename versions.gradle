@@ -7,6 +7,8 @@ versions.gson = '2.9.0'
 versions.room = '2.4.3'
 versions.navigation = '2.5.1'
 versions.glide = '4.13.2'
+versions.mockk = '1.12.5'
+versions.junit = '4.13.2'
 
 // declaring the dependencies
 def libs = [:]
@@ -27,6 +29,11 @@ def retrofit = [:]
 retrofit.core = "com.squareup.retrofit2:retrofit:$versions.retrofit"
 retrofit.converter = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
 libs.retrofit = retrofit
+
+def testing = [:]
+testing.mockk = "io.mockk:mockk:$versions.mockk"
+testing.junit = "junit:junit:$versions.junit"
+libs.testing = testing
 
 libs.gson = "com.google.code.gson:gson:$versions.gson"
 

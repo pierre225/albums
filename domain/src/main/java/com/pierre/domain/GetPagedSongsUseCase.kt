@@ -9,7 +9,6 @@ import com.pierre.domain.model.DomainSong
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-//todo rename getPAgedsongs
 class GetPagedSongsUseCase(
     private val songsRepository: SongsRepository,
     private val mapper: SongsDomainMapper
@@ -18,8 +17,8 @@ class GetPagedSongsUseCase(
     fun invoke(): Flow<PagingData<DomainSong>> =
         Pager(
             PagingConfig(
-                pageSize = 25,
-                initialLoadSize = 25,
+                pageSize = PAGE_SIZE,
+                initialLoadSize = INITIAL_LOADING_SIZE,
                 enablePlaceholders = false
             )
         ) { songsRepository.getPagedSongs() }
@@ -27,6 +26,9 @@ class GetPagedSongsUseCase(
             .map {
                 mapper.mapPagingDataToDomain(it)
             }
-            //.map { pagingData -> pagingData.map { dataSong -> songsDomainMapper.toDomain(dataSong) } }
 
+    companion object {
+        private const val PAGE_SIZE = 25
+        private const val INITIAL_LOADING_SIZE = 100
+    }
 }
