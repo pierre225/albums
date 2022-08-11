@@ -1,17 +1,12 @@
 package com.pierre.data.remote
 
-import com.pierre.data.remote.mapper.RemoteMapper
 import com.pierre.data.remote.service.RemoteService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
-@Singleton
-internal class RemoteDataSource(
-    private val remoteMapper: RemoteMapper
-) {
+internal class RemoteDataSource {
 
     private val client by lazy {
         OkHttpClient.Builder()
@@ -34,7 +29,7 @@ internal class RemoteDataSource(
         retrofit.create(RemoteService::class.java)
     }
 
-    suspend fun remoteSongs() = remoteMapper.toData(service.songs().body() ?: emptyList())
+    suspend fun remoteSongs() = service.songs().body()
 
     companion object {
         private const val BASE_URL = "https://static.leboncoin.fr"

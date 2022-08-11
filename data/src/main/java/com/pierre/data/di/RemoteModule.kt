@@ -1,21 +1,22 @@
 package com.pierre.data.di
 
 import com.pierre.data.remote.RemoteDataSource
-import com.pierre.data.remote.mapper.RemoteMapper
-import com.pierre.data.repository.SongsRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 internal object RemoteModule {
 
     @Provides
-    fun remoteDataSource(remoteMapper: RemoteMapper) = RemoteDataSource(remoteMapper)
+    @Singleton
+    fun remoteDataSource() = RemoteDataSource()
 
-    @Provides
-    fun remoteMapper() = RemoteMapper()
+//    @Provides
+//    @Singleton
+//    fun remoteMapper() = RemoteMapper()
 
 }

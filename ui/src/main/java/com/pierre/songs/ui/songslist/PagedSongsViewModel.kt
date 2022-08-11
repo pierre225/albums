@@ -2,7 +2,7 @@ package com.pierre.songs.ui.songslist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pierre.domain.GetSongsUseCase
+import com.pierre.domain.GetPagedSongsUseCase
 import com.pierre.songs.ui.mapper.SongsUiMapper
 import com.pierre.songs.ui.model.UiSongsState
 import com.pierre.songs.ui.utils.ExceptionUtils
@@ -12,9 +12,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SongsViewModel @Inject constructor(
+class PagedSongsViewModel @Inject constructor(
     private val mapper: SongsUiMapper,
-    private val getSongsUseCase: GetSongsUseCase,
+    private val getPagedSongsUseCase: GetPagedSongsUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<UiSongsState>(UiSongsState.UiLoadingState)
@@ -41,7 +41,7 @@ class SongsViewModel @Inject constructor(
      * Then map the domain song, collect the flow and emit in as a successful result
      */
     private suspend fun getPagingDataSongs() {
-        getSongsUseCase.invoke()
+        getPagedSongsUseCase.invoke()
             .map { mapper.mapPagingDataToDomain(it) }
             .collectLatest {
                 _state.emit(UiSongsState.UiSongsResultsState(it))

@@ -1,31 +1,25 @@
-package com.pierre.songs.ui.songslist.adapter
+package com.pierre.songs.ui.base
 
-import android.util.Log
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import com.pierre.songs.ui.model.UiSong
-import com.pierre.songs.ui.songslist.viewholder.SongViewHolder
 
-class TestPagingAdapter(private val onItemClick : ((UiSong) -> Unit)): PagingDataAdapter<UiSong, SongViewHolder>(
-    diffCallback) {
+abstract class BasePagingAdapter<T : Any>(
+    private val onItemClick: ((T) -> Unit)? = null,
+    diffCallback: DiffUtil.ItemCallback<T>
+) : PagingDataAdapter<T, BaseViewHolder<T>>(
+    diffCallback
+) {
 
-    override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
-        getItem(position)?.also { holder.bind(it) }.also { Log.d("testtest", itemCount.toString()) }
+    abstract fun create(parent: ViewGroup, viewType: Int): BaseViewHolder<T>
+
+    override fun onBindViewHolder(holder: BaseViewHolder<T>, position: Int) {
+        getItem(position)?.also { holder.bind(it) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        SongViewHolder(parent)
-
-
-    companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<UiSong>() {
-
-            override fun areItemsTheSame(oldItem: UiSong, newItem: UiSong) =
-                oldItem.title == newItem.title // todo id
-
-            override fun areContentsTheSame(oldItem: UiSong, newItem: UiSong) =
-                oldItem == newItem
+        create(parent, viewType).apply {
+            if (onItemClick != null) setOnClickListener(onItemClick)
         }
-    }
+
 }
