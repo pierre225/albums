@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.pierre.songs.ui.base.BaseFragment
 import com.pierre.songs.ui.model.UiSong
-import com.pierre.songs.ui.model.UiSongState
+import com.pierre.songs.ui.model.UiSongsState
 import com.pierre.songs.ui.songslist.adapter.SongsAdapter
 import com.pierre.ui.databinding.FragmentSongsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,10 +17,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SongsFragment : BaseFragment() {
 
-    private val songsViewModel : SongsViewModel by viewModels()
+    private val pagedSongsViewModel: PagedSongsViewModel by viewModels()
 
     private lateinit var binding: FragmentSongsBinding
 
+    // Creating the adapter and directly set it to the recycler view
     private val songsAdapter by lazy {
         SongsAdapter(::onSongClicked).also { binding.songsList.adapter = it }
     }
@@ -32,20 +34,24 @@ class SongsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        songsViewModel.state.observe(viewLifecycleOwner) {
-            when (it) {
-                is UiSongState.UiErrorState -> displayError(it.message) { songsViewModel.fetchSongs() }
-                is UiSongState.UiLoadingState -> displayLoading(true)
-                is UiSongState.UiSongResultsState -> displayResults(it.songs)
-            }
+        lifecycleScope.launchWhenStarted {
+            pagedSongsViewModel.state.collect { handleState(it) }
         }
 
-        songsViewModel.fetchSongs()
+        pagedSongsViewModel.fetchPagedSongs()
     }
 
-    private fun displayResults(songs: List<UiSong>) {
+    private fun handleState(state: UiSongsState) {
+        when (state) {
+            is UiSongsState.UiErrorState -> displayError(state.message) { pagedSongsViewModel.fetchPagedSongs() }
+            is UiSongsState.UiLoadingState -> displayLoading(true)
+            is UiSongsState.UiSongsResultsState -> displayResults(state)
+        }
+    }
+
+    private fun displayResults(resultsState: UiSongsState.UiSongsResultsState) {
         displayLoading(false)
-        songsAdapter.updateItems(songs)
+        songsAdapter.submitData(viewLifecycleOwner.lifecycle, resultsState.pagedSongs)
     }
 
     private fun onSongClicked(song: UiSong) {

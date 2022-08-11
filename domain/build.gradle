@@ -11,6 +11,8 @@ dependencies {
     kapt libs.hilt.compiler
     implementation libs.hilt.android
 
+    implementation 'androidx.paging:paging-common:3.1.1'
+
     implementation libs.retrofit.converter
     implementation libs.retrofit.core
 //

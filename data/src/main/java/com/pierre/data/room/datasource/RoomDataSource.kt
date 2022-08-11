@@ -8,7 +8,9 @@ internal class RoomDataSource(
     private val mapper: RoomMapper,
     private val songDao: SongDao) {
 
-    suspend fun getAllSongs() = mapper.toData(songDao.getAllSongs())
+    suspend fun getAllSongs() = songDao.getAllSongs() // todo only check if there are items
+
+    fun getPagedSongs() = songDao.pagedSongs()
 
     suspend fun insertSongs(dataSongs : List<DataSong>) = songDao.insertSongs(mapper.toRoom(dataSongs))
 

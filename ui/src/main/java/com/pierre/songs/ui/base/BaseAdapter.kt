@@ -3,7 +3,12 @@ package com.pierre.songs.ui.base
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter<T : Any>(private val onItemClick : ((T) -> Unit)? = null) : RecyclerView.Adapter<BaseViewHolder<T>>() {
+/**
+ * Currently unused but this is an example of a base adapter that wouldn't use paging
+ */
+abstract class BaseAdapter<T : Any>(
+    private val onItemClick : ((T) -> Unit)? = null
+) : RecyclerView.Adapter<BaseViewHolder<T>>() {
 
     protected var items = emptyList<T>()
 
@@ -20,9 +25,13 @@ abstract class BaseAdapter<T : Any>(private val onItemClick : ((T) -> Unit)? = n
 
     override fun getItemCount() = items.size
 
+    /**
+     * Depending on how we update the data (append / replace...)
+     * We should implement how we update the list and the viewholders.
+     * Generally we should avoid notifyDataSetChanged and use a more granular approach
+     */
     fun updateItems(items: List<T>) {
         this.items = items
-        // todo check when paging
         notifyDataSetChanged()
     }
 
