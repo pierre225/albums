@@ -1,6 +1,6 @@
 package com.pierre.songs.ui.di
 
-import com.pierre.songs.ui.mapper.SongsUiMapper
+import com.pierre.songs.ui.songslist.mapper.SongsUiMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

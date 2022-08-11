@@ -1,4 +1,4 @@
-package com.pierre.domain
+package com.pierre.domain.usecases
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -9,12 +9,14 @@ import com.pierre.domain.model.DomainSong
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class GetPagedSongsUseCase(
+interface GetPagedSongsUseCase : () -> Flow<PagingData<DomainSong>>
+
+internal class GetPagedSongsUseCaseImpl(
     private val songsRepository: SongsRepository,
     private val mapper: SongsDomainMapper
-) {
+): GetPagedSongsUseCase {
 
-    fun invoke(): Flow<PagingData<DomainSong>> =
+    override fun invoke(): Flow<PagingData<DomainSong>> =
         Pager(
             PagingConfig(
                 pageSize = PAGE_SIZE,

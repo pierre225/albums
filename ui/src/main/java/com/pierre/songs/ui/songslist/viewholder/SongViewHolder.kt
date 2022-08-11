@@ -6,7 +6,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
 import com.pierre.songs.ui.base.BaseViewHolder
-import com.pierre.songs.ui.model.UiSong
+import com.pierre.songs.ui.songslist.model.UiSong
 import com.pierre.ui.R
 import com.pierre.ui.databinding.SongViewHolderBinding
 

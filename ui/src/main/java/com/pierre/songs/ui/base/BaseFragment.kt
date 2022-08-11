@@ -26,8 +26,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 abstract class BaseFragment: Fragment() {
 
-    //todo handle events and logger
-
     private lateinit var baseBinding: FragmentBaseBinding
 
     abstract fun initBinding(inflater: LayoutInflater): ViewBinding
