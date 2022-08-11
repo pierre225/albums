@@ -1,4 +1,4 @@
-package com.pierre.songs.ui.model
+package com.pierre.songs.ui.songslist.model
 
 import androidx.annotation.StringRes
 import androidx.paging.PagingData

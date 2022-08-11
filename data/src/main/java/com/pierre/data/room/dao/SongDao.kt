@@ -10,6 +10,9 @@ import com.pierre.data.repository.model.DataSong
 @Dao
 interface SongDao {
 
+    @Query("SELECT COUNT(*) FROM songs")
+    suspend fun getSongsCount(): Int
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSongs(songs: List<DataSong.RoomSong>)
 

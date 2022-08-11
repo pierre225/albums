@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.pierre.data.room.AppDatabase
 import com.pierre.data.room.dao.SongDao
-import com.pierre.data.room.datasource.RoomDataSource
+import com.pierre.data.room.datasource.RoomDataSourceImpl
 import com.pierre.data.room.mapper.RoomMapper
 import dagger.Module
 import dagger.Provides
@@ -40,6 +40,6 @@ internal object RoomModule {
     fun roomDataSource(
         songDao: SongDao,
         roomMapper: RoomMapper
-    ) = RoomDataSource(roomMapper, songDao)
+    ) = RoomDataSourceImpl(roomMapper, songDao)
 
 }

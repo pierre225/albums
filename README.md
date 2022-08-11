@@ -15,13 +15,14 @@ to add -
 - Config change
 - tests
 - tests room https://developer.android.com/training/data-storage/room/testing-db
-
+- comment in code
 - the domain layer may not be useful in this app, in a real app, we could do some operation there like aggregating data from various repo, transforming it etc
 
 
 // nice to have
 - elaborated Dark mode
-- CI CD
+- CI CD, alpha /beta channel, runs the test, 
+- keystore handling with CICD
 - code style for better readability 
 - cache strategy
 - A waaaaaay better UI

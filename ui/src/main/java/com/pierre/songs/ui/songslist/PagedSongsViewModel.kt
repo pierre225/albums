@@ -2,9 +2,9 @@ package com.pierre.songs.ui.songslist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pierre.domain.GetPagedSongsUseCase
-import com.pierre.songs.ui.mapper.SongsUiMapper
-import com.pierre.songs.ui.model.UiSongsState
+import com.pierre.domain.usecases.GetPagedSongsUseCase
+import com.pierre.songs.ui.songslist.mapper.SongsUiMapper
+import com.pierre.songs.ui.songslist.model.UiSongsState
 import com.pierre.songs.ui.utils.ExceptionUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*

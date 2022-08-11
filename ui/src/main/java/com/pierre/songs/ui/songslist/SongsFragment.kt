@@ -8,8 +8,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.pierre.songs.ui.base.BaseFragment
-import com.pierre.songs.ui.model.UiSong
-import com.pierre.songs.ui.model.UiSongsState
+import com.pierre.songs.ui.songslist.model.UiSong
+import com.pierre.songs.ui.songslist.model.UiSongsState
 import com.pierre.songs.ui.songslist.adapter.SongsAdapter
 import com.pierre.ui.databinding.FragmentSongsBinding
 import dagger.hilt.android.AndroidEntryPoint

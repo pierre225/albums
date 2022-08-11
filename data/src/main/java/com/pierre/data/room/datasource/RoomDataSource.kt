@@ -1,17 +1,28 @@
 package com.pierre.data.room.datasource
 
+import androidx.paging.PagingSource
 import com.pierre.data.repository.model.DataSong
 import com.pierre.data.room.dao.SongDao
 import com.pierre.data.room.mapper.RoomMapper
 
-internal class RoomDataSource(
+interface RoomDataSource {
+
+    suspend fun getSongsCount() : Int
+
+    fun getPagedSongs() : PagingSource<Int, DataSong.RoomSong>
+
+    suspend fun insertSongs(dataSongs : List<DataSong.RemoteSong>)
+}
+
+internal class RoomDataSourceImpl(
     private val mapper: RoomMapper,
-    private val songDao: SongDao) {
+    private val songDao: SongDao) : RoomDataSource {
 
-    suspend fun getAllSongs() = songDao.getAllSongs() // todo only check if there are items
+    override suspend fun getSongsCount() = songDao.getSongsCount()
 
-    fun getPagedSongs() = songDao.pagedSongs()
+    override fun getPagedSongs() = songDao.pagedSongs()
 
-    suspend fun insertSongs(dataSongs : List<DataSong>) = songDao.insertSongs(mapper.toRoom(dataSongs))
+    override suspend fun insertSongs(dataSongs : List<DataSong.RemoteSong>) =
+        songDao.insertSongs(mapper.toRoom(dataSongs))
 
 }

@@ -4,4 +4,5 @@
     <string name="retry">Retry</string>
     <string name="io_exception_message">Check you connection</string>
     <string name="internal_exception_message">Internal issue, please try again later</string>
+    <string name="welcome_to_the_song_app">Welcome to the songs app</string>
 </resources>
