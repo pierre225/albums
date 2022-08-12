@@ -10,6 +10,7 @@ abstract class BaseAdapter<T : Any>(
     private val onItemClick : ((T) -> Unit)? = null
 ) : RecyclerView.Adapter<BaseViewHolder<T>>() {
 
+    // Accessible from children
     protected var items = emptyList<T>()
 
     abstract fun create(parent: ViewGroup, viewType: Int): BaseViewHolder<T>

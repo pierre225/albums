@@ -2,12 +2,19 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/songsFragment">
+    app:startDestination="@id/splashFragment">
 
-<!--  <fragment   todo splash screen -->
-<!--      android:id="@+id/songsFragment"-->
-<!--      android:name="com.musicbrainz.seb.ui.artist.ArtistsFragment"-->
-<!--      android:label="ArtistsFragment" />-->
+  <fragment
+      android:id="@+id/splashFragment"
+      android:name="com.pierre.songs.ui.splash.SplashFragment"
+      android:label="SplashFragment" >
+    <action
+        android:id="@+id/splashToSongs"
+        app:launchSingleTop="true"
+        app:popUpToInclusive="true"
+        app:popUpTo="@+id/nav_graph"
+        app:destination="@id/songsFragment" />
+  </fragment>
 
   <fragment
       android:id="@+id/songsFragment"

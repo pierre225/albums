@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
-import android.view.animation.AlphaAnimation
-import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
@@ -22,16 +20,15 @@ import dagger.hilt.android.AndroidEntryPoint
  * Additionally, it could handle Rx disposables, events, logging...
  *
  */
-
 @AndroidEntryPoint
 abstract class BaseFragment: Fragment() {
 
-    //todo handle events and logger
-
     private lateinit var baseBinding: FragmentBaseBinding
 
+    // Child view binding
     abstract fun initBinding(inflater: LayoutInflater): ViewBinding
 
+    // BaseFragment binding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -58,6 +55,9 @@ abstract class BaseFragment: Fragment() {
             .setAction(R.string.retry, retry).show()
     }
 
+    /**
+     * Shows or hides a loader at the bottom of the screen
+     */
     protected fun displayLoading(display: Boolean) {
         baseBinding.baseLoader.visibility =
             if (display) View.VISIBLE else View.GONE

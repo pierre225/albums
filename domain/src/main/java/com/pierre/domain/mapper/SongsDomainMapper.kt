@@ -17,6 +17,4 @@ class SongsDomainMapper {
     fun mapPagingDataToDomain(pagingData: PagingData<out DataSong>) =
         pagingData.map { toDomain(it) }
 
-    fun toDomains(dataSongs: List<DataSong>) = dataSongs.map(this::toDomain)
-
 }

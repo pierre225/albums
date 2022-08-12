@@ -8,6 +8,7 @@
     <dimen name="spacing_normal">12dp</dimen>
     <dimen name="spacing_large">16dp</dimen>
     <dimen name="spacing_x_large">24dp</dimen>
+    <dimen name="spacing_xx_large">36dp</dimen>
 
     <dimen name="text_xx_small">2sp</dimen>
     <dimen name="text_x_small">4sp</dimen>
@@ -17,4 +18,5 @@
     <dimen name="text_x_large">24sp</dimen>
 
     <dimen name="song_item_height">90dp</dimen>
+    <dimen name="splash_icon_size">100dp</dimen>
 </resources>

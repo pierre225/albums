@@ -1,6 +1,7 @@
 package com.pierre.data.di
 
 import com.pierre.data.remote.RemoteDataSource
+import com.pierre.data.remote.RemoteDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,10 +14,6 @@ internal object RemoteModule {
 
     @Provides
     @Singleton
-    fun remoteDataSource() = RemoteDataSource()
-
-//    @Provides
-//    @Singleton
-//    fun remoteMapper() = RemoteMapper()
+    fun remoteDataSource(): RemoteDataSource = RemoteDataSourceImpl()
 
 }
