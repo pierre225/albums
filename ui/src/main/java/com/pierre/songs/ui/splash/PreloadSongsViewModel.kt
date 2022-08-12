@@ -30,7 +30,6 @@ class PreloadSongsViewModel @Inject constructor(
         }
     }
 
-
     private suspend fun preload() {
         preloadSongsUseCase.invoke()
         _state.emit(PreloadState.Success)

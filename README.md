@@ -3,9 +3,10 @@
 
 The data is stored in room, I am still learning room so my implementation can probably be improved!
 
-//todo 
+//todo explain 
 - add architecture choice (MVVM) and why
 - add library choices and why
+- choice of flow over RX / LiveData
 - Explain 5 days work / nice to have
 - Explain git flow 
 - Explain convention branch name etc
@@ -29,3 +30,4 @@ to add -
 - Some animation (lottie)
 - Some event bus and tracker like firebase 
 - leak canary only in debug
+- some better unit tests, now testing the flows, should also test correct data stream / mapping
