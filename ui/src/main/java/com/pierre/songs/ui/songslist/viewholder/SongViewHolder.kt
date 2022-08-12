@@ -1,7 +1,6 @@
 package com.pierre.songs.ui.songslist.viewholder
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
@@ -10,7 +9,8 @@ import com.pierre.songs.ui.songslist.model.UiSong
 import com.pierre.ui.R
 import com.pierre.ui.databinding.SongViewHolderBinding
 
-class SongViewHolder(parent: ViewGroup): BaseViewHolder<UiSong>(parent, R.layout.song_view_holder) {
+class SongViewHolder(parent: ViewGroup) :
+    BaseViewHolder<UiSong>(parent, R.layout.song_view_holder) {
 
     private val binding = SongViewHolderBinding.bind(itemView)
 
@@ -26,6 +26,7 @@ class SongViewHolder(parent: ViewGroup): BaseViewHolder<UiSong>(parent, R.layout
         }
     }
 
+    // Needed to get the image
     private fun glideUrl(url: String) =
         GlideUrl(url, LazyHeaders.Builder().addHeader("User-Agent", "android").build())
 }

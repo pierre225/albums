@@ -4,6 +4,12 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 
+/**
+ * A Base paging adapter that can be extended when having Paging Data to display.
+ * It works with BaseViewHolder.
+ *
+ * We can specify an itemClick and we must specify a diffcallback
+ */
 abstract class BasePagingAdapter<T : Any>(
     private val onItemClick: ((T) -> Unit)? = null,
     diffCallback: DiffUtil.ItemCallback<T>

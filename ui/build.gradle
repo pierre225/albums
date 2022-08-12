@@ -8,9 +8,6 @@ plugins {
 android {
     // View Binding
     buildFeatures { viewBinding true }
-
-    // Ui tests
-    defaultConfig { testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner" }
 }
 
 dependencies {

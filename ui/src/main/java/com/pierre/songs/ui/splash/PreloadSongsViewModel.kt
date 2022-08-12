@@ -24,7 +24,7 @@ class PreloadSongsViewModel @Inject constructor(
             _state.emit(PreloadState.Loading)
             try {
                 preload()
-            } catch(e: Exception) {
+            } catch (e: Exception) {
                 onPreloadError(e)
             }
         }

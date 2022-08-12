@@ -34,6 +34,7 @@ class SongsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Listen ui state events
         lifecycleScope.launchWhenStarted {
             pagedSongsViewModel.state.collect { handleState(it) }
         }
@@ -41,6 +42,7 @@ class SongsFragment : BaseFragment() {
         pagedSongsViewModel.fetchPagedSongs()
     }
 
+    // Display the right ui depending on the state
     private fun handleState(state: UiSongsState) {
         when (state) {
             is UiSongsState.UiErrorState -> displayError(state.message) { pagedSongsViewModel.fetchPagedSongs() }
@@ -49,11 +51,13 @@ class SongsFragment : BaseFragment() {
         }
     }
 
+    // Shows the paged data
     private fun displayResults(resultsState: UiSongsState.UiSongsResultsState) {
         displayLoading(false)
         songsAdapter.submitData(viewLifecycleOwner.lifecycle, resultsState.pagedSongs)
     }
 
+    // Only show a toast, it should probably open a detailed page
     private fun onSongClicked(song: UiSong) {
         Toast.makeText(context, song.title, Toast.LENGTH_LONG).show()
     }

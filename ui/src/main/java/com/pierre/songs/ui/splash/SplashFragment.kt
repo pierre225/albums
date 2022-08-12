@@ -1,7 +1,6 @@
 package com.pierre.songs.ui.splash
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -14,6 +13,9 @@ import com.pierre.ui.R
 import com.pierre.ui.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * A splash screen displayed to the user while we load the data in the background
+ */
 @AndroidEntryPoint
 class SplashFragment : BaseFragment() {
 
@@ -28,8 +30,6 @@ class SplashFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        Log.d("testtest", "created")
 
         lifecycleScope.launchWhenStarted {
             preloadSongsViewModel.state.collect { handleState(it) }
@@ -46,6 +46,9 @@ class SplashFragment : BaseFragment() {
         }
     }
 
+    /**
+     * If the data is loaded, we open the songs fragment
+     */
     private fun onSuccess() {
         displayLoading(false)
         findNavController().navigate(R.id.splashToSongs)
