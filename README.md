@@ -5,7 +5,7 @@ It took me approximately 5 full working days to build it. With more time, I coul
 
 ## Architecture
 ### MVVM
-The application uses an MVVM architecture which is the most common one, the basic components of this architecture are :
+The application uses an MVVM architecture which is the most common one (in Android apps), the basic components of this architecture are :
 - The model: Containing the data of the application
 - The view: What will be shown on the screen, what the user will interact with
 - The viewmodel: acting like a bridge between the model and the view. It will be able to get the data and transform it so it can be used by the view. The view will be subscribed to it to be updated when needed.
@@ -20,20 +20,18 @@ In order to respect the "separation of concerns" concept, this app is separated 
 
 ### Flow
 I chose to use Kotlin Flow (over live data / Rx) for async tasks.
-I prefer Flow over LiveData mostly because LiveData is bound to Android while we can use Flow everywhere as it comes from Kotlin (like in our domain and data modules)
+I prefer Flow over LiveData mostly because LiveData is bound to Android while we can use Flow everywhere as it comes from Kotlin (like in our domain and data modules). 
 Rx is a great reactive solution too, I simply had to make a choice ;)
 
 ## Libraries
 ### Hilt
-Hilt (dagger) for the dependency injection, reducing boilerplate code and making testing easier
-Alternative I used : Koin
+Hilt (dagger) for the dependency injection, reducing boilerplate code and making testing easier. (Alternative I used : Koin)
 
 ### MockK
-MockK in order to mock classes while testing.
-Alternative: Mockito
+MockK in order to mock classes while testing. (Alternative: Mockito)
 
 ### Espresso
-Espresso to UI test the app, unfortunately I didn't have enough time to implement proper UI tests, I only set up en environment...
+Espresso to UI test the app, unfortunately I didn't have enough time to implement proper UI tests, I only set up en environment... 
 You can find a basic UI test in songs\app\src\androidTest\java\com\pierre\songs\AppUiTests.kt
 
 ### Retrofit (and Gson)
@@ -50,11 +48,13 @@ Helping to load images from url (And transforms it if we need)
 ## Working flow
 ### Git Flow
 I am used to work in a team following git flow concepts, it means defining some specific branches with roles :
-- master : the production branch, containing the code actually in production
-- dev : the branch on which we implement new features, contains the latest development changes
-- features : we create feature branches from dev to implement new features that will then be merged on dev (see name convention below)
-- release : When a ready we build a release candidate from dev and we start some rollout (alpha, beta... depending on the strategy). Once the rollout is completed, we merge it on master and dev
-- hotfix : If we need to fix a bug quickly, we can branch from master, do our changes and merge back on master and dev
+- master : the production branch, containing the code currently in production.
+- dev : the branch on which we implement new features, contains the latest development changes.
+- features : we create feature branches from dev to implement new features that will then be merged on dev (see name convention below).
+- release : When ready we build a release candidate from dev and we start some rollout (alpha, beta... depending on the strategy). Once the rollout is completed, we merge it on master and dev.
+- hotfix : If we need to fix a bug quickly, we can branch from master, do our changes and merge back on master and dev.
+
+We usually tag branches with some convention name in order to trigger actions on the CI.
 
 ### Convention
 In this project, the feature branches have been named : 'ANDX-name-of-feature'
@@ -92,3 +92,6 @@ Test room using https://developer.android.com/training/data-storage/room/testing
 
 ### UI
 A more elaborated UI (I know.... x) ), a more adaptive dark mode, some animation (maybe using Lottie?) and a real launcher icon :D 
+
+
+Thank you for your time, reading this and the code!!!
