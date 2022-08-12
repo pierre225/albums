@@ -2,7 +2,6 @@ package com.pierre.songs.ui.songslist.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import com.pierre.songs.ui.base.BaseAdapter
 import com.pierre.songs.ui.base.BasePagingAdapter
 import com.pierre.songs.ui.songslist.model.UiSong
 import com.pierre.songs.ui.songslist.viewholder.SongViewHolder

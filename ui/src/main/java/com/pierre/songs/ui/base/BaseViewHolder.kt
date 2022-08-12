@@ -9,7 +9,8 @@ import androidx.appcompat.R
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * todo exp
+ * A base view holder which usually works with the BaseAdapter or the BasePagingAdapter.
+ * It has a onclickListener ready and will inflate the layout passed
  */
 abstract class BaseViewHolder<T : Any>(itemView: View): RecyclerView.ViewHolder(itemView) {
 

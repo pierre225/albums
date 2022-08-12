@@ -7,22 +7,23 @@ import com.pierre.data.room.mapper.RoomMapper
 
 interface RoomDataSource {
 
-    suspend fun getSongsCount() : Int
+    suspend fun getSongsCount(): Int
 
-    fun getPagedSongs() : PagingSource<Int, DataSong.RoomSong>
+    fun getPagedSongs(): PagingSource<Int, DataSong.RoomSong>
 
-    suspend fun insertSongs(dataSongs : List<DataSong.RemoteSong>)
+    suspend fun insertSongs(dataSongs: List<DataSong.RemoteSong>)
 }
 
 internal class RoomDataSourceImpl(
     private val mapper: RoomMapper,
-    private val songDao: SongDao) : RoomDataSource {
+    private val songDao: SongDao
+) : RoomDataSource {
 
     override suspend fun getSongsCount() = songDao.getSongsCount()
 
     override fun getPagedSongs() = songDao.pagedSongs()
 
-    override suspend fun insertSongs(dataSongs : List<DataSong.RemoteSong>) =
+    override suspend fun insertSongs(dataSongs: List<DataSong.RemoteSong>) =
         songDao.insertSongs(mapper.toRoom(dataSongs))
 
 }

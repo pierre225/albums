@@ -46,20 +46,21 @@ internal class SongsRepositoryImplTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun `preload song calls remote data source if there are no songs in room and will store the result it in room`() = runTest {
-        val remoteSongs = mockk<List<DataSong.RemoteSong>>(relaxed = true)
+    fun `preload song calls remote data source if there are no songs in room and will store the result it in room`() =
+        runTest {
+            val remoteSongs = mockk<List<DataSong.RemoteSong>>(relaxed = true)
 
-        coEvery { roomDataSource.getSongsCount() }.returns(0)
-        coEvery { remoteDataSource.remoteSongs() }.returns(remoteSongs)
+            coEvery { roomDataSource.getSongsCount() }.returns(0)
+            coEvery { remoteDataSource.remoteSongs() }.returns(remoteSongs)
 
-        repository.preloadSongs()
+            repository.preloadSongs()
 
-        coVerifyOrder {
-            roomDataSource.getSongsCount()
-            remoteDataSource.remoteSongs()
-            roomDataSource.insertSongs(remoteSongs)
+            coVerifyOrder {
+                roomDataSource.getSongsCount()
+                remoteDataSource.remoteSongs()
+                roomDataSource.insertSongs(remoteSongs)
+            }
         }
-    }
 
     @ExperimentalCoroutinesApi
     @Test
@@ -68,7 +69,7 @@ internal class SongsRepositoryImplTest {
 
         repository.preloadSongs()
 
-        coVerify { roomDataSource.getSongsCount()  }
+        coVerify { roomDataSource.getSongsCount() }
         coVerify(exactly = 0) { remoteDataSource.remoteSongs() }
         coVerify(exactly = 0) { roomDataSource.insertSongs(any()) }
     }

@@ -43,14 +43,15 @@ internal class GetPagedSongsUseCaseImplTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun `verify the songs are pulled from the repository and then mapped in domain model`() = runTest {
-        every { repository.getPagedSongs() }.returns(mockk<PagingSource<Int, DataSong>>(relaxed = true))
+    fun `verify the songs are pulled from the repository and then mapped in domain model`() =
+        runTest {
+            every { repository.getPagedSongs() }.returns(mockk<PagingSource<Int, DataSong>>(relaxed = true))
 
-        useCase.invoke().first()
+            useCase.invoke().first()
 
-        verifyOrder {
-            repository.getPagedSongs()
-            mapper.mapPagingDataToDomain(any())
+            verifyOrder {
+                repository.getPagedSongs()
+                mapper.mapPagingDataToDomain(any())
+            }
         }
-    }
 }

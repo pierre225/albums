@@ -10,7 +10,16 @@ android {
         versionCode = 1
         versionName = "1.0"
         defaultConfig { testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner" }
+    }
 
+    signingConfigs {
+        // The release signing config should be handled on the CI CD cf Readme
+        release {
+            storeFile file("release.keystore")
+            storePassword "XXX"
+            keyAlias "XXX"
+            keyPassword "XXX"
+        }
     }
 
     buildTypes {
@@ -25,6 +34,7 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+            signingConfig signingConfigs.release
         }
     }
 }

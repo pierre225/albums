@@ -14,8 +14,12 @@ interface GetPagedSongsUseCase : () -> Flow<PagingData<DomainSong>>
 internal class GetPagedSongsUseCaseImpl(
     private val songsRepository: SongsRepository,
     private val mapper: SongsDomainMapper
-): GetPagedSongsUseCase {
+) : GetPagedSongsUseCase {
 
+    /**
+     * Retrieve PagingData from the repository,
+     * It will initially load 100 items and then 25 by 25 while scrolling
+     */
     override fun invoke(): Flow<PagingData<DomainSong>> =
         Pager(
             PagingConfig(
@@ -25,9 +29,7 @@ internal class GetPagedSongsUseCaseImpl(
             )
         ) { songsRepository.getPagedSongs() }
             .flow
-            .map {
-                mapper.mapPagingDataToDomain(it)
-            }
+            .map(mapper::mapPagingDataToDomain)
 
     companion object {
         private const val PAGE_SIZE = 25
