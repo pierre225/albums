@@ -3,7 +3,6 @@ package com.pierre.songs.ui.splash
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pierre.domain.usecases.PreloadSongsUseCase
-import com.pierre.songs.ui.songslist.model.UiSongsState
 import com.pierre.songs.ui.splash.model.PreloadState
 import com.pierre.songs.ui.utils.ExceptionUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -39,7 +38,6 @@ class PreloadSongsViewModel @Inject constructor(
      * If there is an error along the way, map this error and send it
      */
     private suspend fun onPreloadError(e: Exception) {
-        e.printStackTrace()
         _state.emit(
             PreloadState.Error(
                 message = ExceptionUtils.messageFromException(e),

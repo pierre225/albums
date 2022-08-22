@@ -17,18 +17,15 @@ import javax.inject.Singleton
 object DomainModule {
 
     @Provides
-    @Singleton
     fun domainMapper() = SongsDomainMapper()
 
     @Provides
-    @Singleton
     fun getPagedSongsUseCase(
         repository: SongsRepository,
         domainMapper: SongsDomainMapper
     ): GetPagedSongsUseCase = GetPagedSongsUseCaseImpl(repository, domainMapper)
 
     @Provides
-    @Singleton
     fun preloadSongUseCase(
         repository: SongsRepository,
     ): PreloadSongsUseCase = PreloadSongsUseCaseImpl(repository)

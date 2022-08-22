@@ -33,7 +33,6 @@ internal object RoomModule {
         appDatabase.songDao()
 
     @Provides
-    @Singleton
     fun roomMapper() = RoomMapper()
 
     @Provides
