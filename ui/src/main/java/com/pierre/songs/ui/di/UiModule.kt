@@ -12,7 +12,6 @@ import javax.inject.Singleton
 object UiModule {
 
     @Provides
-    @Singleton
     fun uiMapper() = SongsUiMapper()
 
 }
