@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.pierre.songs.ui.base.BaseFragment
@@ -12,6 +14,7 @@ import com.pierre.songs.ui.splash.model.PreloadState
 import com.pierre.ui.R
 import com.pierre.ui.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 /**
  * A splash screen displayed to the user while we load the data in the background
@@ -31,8 +34,10 @@ class SplashFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        lifecycleScope.launchWhenStarted {
-            preloadSongsViewModel.state.collect { handleState(it) }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch { preloadSongsViewModel.state.collect { handleState(it) } }
+            }
         }
 
         preloadSongsViewModel.preloadSongs()

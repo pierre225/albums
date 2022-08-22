@@ -52,7 +52,6 @@ class PagedSongsViewModel @Inject constructor(
      * If there is an error along the way, map this error and send it
      */
     private suspend fun onGetPagedSongsError(e: Exception) {
-        e.printStackTrace()
         _state.emit(
             UiSongsState.UiErrorState(
                 message = ExceptionUtils.messageFromException(e),
